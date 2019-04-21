@@ -12,9 +12,9 @@ namespace FoodApp.Data
             restaurants = new List<Restaurant>()
                 {
                     new Restaurant{Id = 1,Name = "Megrate Pizza", Location = "London",Cousine = CousineType.Italian},
-                    new Restaurant{Id = 1,Name = "Neretva", Location = "Konjic",Cousine = CousineType.Bosnian},
-                    new Restaurant{Id = 1,Name = "Nachos Mexico", Location = "Mexico City",Cousine = CousineType.Mexican},
-                    new Restaurant{Id = 1,Name = "Mona Lisa", Location = "Oslo",Cousine = CousineType.Indian},
+                    new Restaurant{Id = 2,Name = "Neretva", Location = "Konjic",Cousine = CousineType.Bosnian},
+                    new Restaurant{Id = 3,Name = "Nachos Mexico", Location = "Mexico City",Cousine = CousineType.Mexican},
+                    new Restaurant{Id = 4,Name = "Mona Lisa", Location = "Oslo",Cousine = CousineType.Indian},
                 };
             }
         public IEnumerable<Restaurant> GetAll()
@@ -24,6 +24,13 @@ namespace FoodApp.Data
                    orderby r.Name
                    select r;
 
+        }
+        public IEnumerable<Restaurant>GetRestaurantsByName(string name = null)
+        {
+            return from r in restaurants
+                   where string.IsNullOrEmpty(name)||r.Name.StartsWith(name)
+                   orderby r.Name
+                   select r;
         }
     }
 }

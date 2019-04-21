@@ -22,11 +22,12 @@ namespace FoodApp.Pages.Restaurants
             _config = config;
             _restaurantData = restaurantData;
         }
-        public void OnGet()
-        {
+        public void OnGet(string searchTerm)
+        { 
             //Message = "Hello world";
+            //HttpContext.Request.QueryString
             Message = _config["Message"];
-            Restaurants = _restaurantData.GetAll();
+            Restaurants = _restaurantData.GetRestaurantsByName(searchTerm);
         }
     }
 }
