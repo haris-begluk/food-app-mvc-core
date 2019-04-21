@@ -16,6 +16,8 @@ namespace FoodApp.Pages.Restaurants
         public IConfiguration _config { get; }
         public IRestaurantData _restaurantData { get; }
         public IEnumerable<Restaurant> Restaurants { get; set; }
+        [BindProperty(SupportsGet =true)]
+        public string SearchTerm { get; set; }
 
         public ListModel(IConfiguration config, IRestaurantData restaurantData)
         {
@@ -24,10 +26,9 @@ namespace FoodApp.Pages.Restaurants
         }
         public void OnGet(string searchTerm)
         { 
-            //Message = "Hello world";
-            //HttpContext.Request.QueryString
+            
             Message = _config["Message"];
-            Restaurants = _restaurantData.GetRestaurantsByName(searchTerm);
+            Restaurants = _restaurantData.GetRestaurantsByName(SearchTerm);
         }
     }
 }
