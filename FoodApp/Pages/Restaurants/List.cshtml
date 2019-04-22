@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model FoodApp.Pages.Restaurants.ListModel
 @{
     ViewData["Title"] = "List";
@@ -23,16 +23,16 @@
 <table class="table">
     @foreach (var restaurant in Model.Restaurants)
     {
-    <tr>
-        <td>@restaurant.Name</td>
-        <td>@restaurant.Location</td>
-        <td>@restaurant.Cousine</td>
-        <td>
-            <a class="btn btn-lg" asp-page="./Detail" asp-route-id="@restaurant.Id">
-                <i class="fas fa-search-plus"></i>
-            </a>
-        </td>
-    </tr>
+        <tr>
+            <td>@restaurant.Name</td>
+            <td>@restaurant.Location</td>
+            <td>@restaurant.Cousine</td>
+            <td>
+                <a class="btn btn-lg" asp-page="./Detail" asp-route-restaurantId="@restaurant.Id">
+                    <i class="fas fa-search-plus"></i>
+                </a>
+            </td>
+        </tr>
     }
 
 </table>

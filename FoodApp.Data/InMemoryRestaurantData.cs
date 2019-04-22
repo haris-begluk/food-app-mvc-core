@@ -25,6 +25,12 @@ namespace FoodApp.Data
                    select r;
 
         }
+
+        public Restaurant GetRestaurantById(int restaurantId)
+        {
+            return restaurants.SingleOrDefault(r => r.Id == restaurantId);
+        }
+
         public IEnumerable<Restaurant>GetRestaurantsByName(string name = null)
         {
             return from r in restaurants
