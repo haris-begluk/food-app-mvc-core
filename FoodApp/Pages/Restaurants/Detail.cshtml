@@ -1,4 +1,4 @@
-﻿@page "restaurantId:int"
+﻿@page "{restaurantId:int}"
 @model FoodApp.Pages.Restaurants.DetailModel
 @{
     ViewData["Title"] = "Detail";
@@ -15,4 +15,8 @@
 <div>
     Coiusine: @Model.Restaurant.Cousine
 </div>
+@if(Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
 <a asp-page="./List" class="btn btn-primary">All Restaurants</a>

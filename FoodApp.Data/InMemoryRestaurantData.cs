@@ -16,7 +16,10 @@ namespace FoodApp.Data
                     new Restaurant{Id = 3,Name = "Nachos Mexico", Location = "Mexico City",Cousine = CousineType.Mexican},
                     new Restaurant{Id = 4,Name = "Mona Lisa", Location = "Oslo",Cousine = CousineType.Indian},
                 };
-            }
+        }
+
+
+
         public IEnumerable<Restaurant> GetAll()
         {
 
@@ -31,13 +34,38 @@ namespace FoodApp.Data
             return restaurants.SingleOrDefault(r => r.Id == restaurantId);
         }
 
-        public IEnumerable<Restaurant>GetRestaurantsByName(string name = null)
+        public IEnumerable<Restaurant> GetRestaurantsByName(string name = null)
         {
             return from r in restaurants
-                   where string.IsNullOrEmpty(name)||r.Name.StartsWith(name)
+                   where string.IsNullOrEmpty(name) || r.Name.StartsWith(name)
                    orderby r.Name
                    select r;
         }
+
+        public Restaurant Update(Restaurant updatedRestaurant)
+        {
+            var restaurant = restaurants.SingleOrDefault(r => r.Id == updatedRestaurant.Id);
+            if(restaurant != null)
+            {
+                restaurant.Name = updatedRestaurant.Name;
+                restaurant.Location = updatedRestaurant.Location;
+                restaurant.Cousine = updatedRestaurant.Cousine;
+
+            }
+            return restaurant;
+        }
+        public int Commit()
+        {
+            return 0;
+        }
+
+        public Restaurant Add(Restaurant newRestaurant)
+        {
+
+            restaurants.Add(newRestaurant);
+            newRestaurant.Id = restaurants.Max(r => r.Id) + 1;
+            return newRestaurant;
+
+        }
     }
 }
- 
